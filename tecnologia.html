@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Tecnología 1 - Secundaria Técnica 132</title>
+    <style>
+        :root { 
+            --primary: #0a2342; 
+            --secondary: #800000; 
+            --accent: #1e5631;
+            --bg: #f4f4f2; 
+            --card: #ffffff; 
+            --text: #2c3e50;
+            --border: #d5d8dc;
+        }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.8; }
+        
+        nav { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        .card { background: var(--card); padding: 50px; border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.1); margin-bottom: 30px; position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+        
+        .hidden { display: none; }
+        
+        h1 { color: var(--primary); text-align: center; font-size: 2.2rem; margin-bottom: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; }
+        h2 { color: var(--secondary); border-left: 5px solid var(--secondary); padding-left: 15px; margin-top: 2.5rem; font-size: 1.6rem; }
+        h3 { color: var(--accent); margin-top: 1.5rem; }
+        
+        p { margin-bottom: 1.5rem; text-align: justify; }
+        
+        .btn-action { background: var(--primary); color: white; border: none; padding: 18px 30px; cursor: pointer; font-weight: bold; font-size: 1.1rem; border-radius: 6px; width: 100%; transition: 0.3s; margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-action:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .menu-item { background: white; border: 1px solid var(--border); padding: 30px; cursor: pointer; border-radius: 10px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .menu-item:hover { border-color: var(--primary); transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .question-block { margin-bottom: 40px; padding: 25px; background: #fafafa; border-radius: 10px; border: 1px solid #eee; }
+        .option-label { display: block; padding: 15px; border: 2px solid #eee; margin-top: 10px; cursor: pointer; border-radius: 8px; transition: 0.2s; background: white; }
+        input[type="radio"]:checked + .option-label { background: #eef2ff; border-color: var(--primary); font-weight: bold; color: var(--primary); }
+        input[type="radio"] { display: none; }
+
+        #certificate-canvas { max-width: 100%; height: auto; border: 4px double #333; margin-top: 25px; display: none; background: white; }
+        
+        footer { text-align: center; padding: 60px; color: #7f8c8d; font-size: 0.95rem; }
+        
+        .case-study { background: #fff9f0; border: 1px solid #ffeeba; padding: 25px; margin: 30px 0; border-radius: 8px; }
+        .case-study h4 { margin-top: 0; color: #856404; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; }
+        
+        .technical-info { background: #e9ecef; padding: 20px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; margin: 20px 0; }
+
+        .badge { background: #0a2342; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="hidden">
+        <div style="font-weight: bold; letter-spacing: 1px;">TEC 132 | TECNOLOGÍA I</div>
+        <button onclick="showIndex()" style="background:rgba(255,255,255,0.2); border: 1px solid white; color:white; padding:8px 20px; cursor:pointer; border-radius:4px; font-weight: bold;">ÍNDICE DE TEMAS</button>
+    </nav>
+
+    <div class="container">
+        <!-- LOGIN -->
+        <div id="screen-login" class="card">
+            <div style="text-align: center;">
+                <div class="badge">EST 132 - CICLO ESCOLAR 2025-2026</div>
+                <h1>Plataforma de Aprendizaje Tecnológico</h1>
+                <p style="font-size: 1.2rem; color: #555;">Manual Extenso de Sistemas Técnicos y Procesos Industriales</p>
+            </div>
+            <div style="margin-top: 40px; background: #f8f9fa; padding: 30px; border-radius: 12px;">
+                <label style="font-weight: bold; color: var(--primary);">Nombre Completo del Alumno:</label>
+                <input type="text" id="userName" placeholder="Apellido Paterno, Apellido Materno, Nombres" style="width:100%; padding:15px; margin:10px 0 25px 0; border:2px solid #ddd; border-radius:6px; box-sizing: border-box; font-size: 1.1rem;">
+                
+                <label style="font-weight: bold; color: var(--primary);">Grupo Correspondiente:</label>
+                <select id="userGroup" style="width:100%; padding:15px; margin:10px 0 35px 0; border:2px solid #ddd; border-radius:6px; font-size: 1.1rem; background: white;">
+                    <option value="" disabled selected>Selecciona tu grupo...</option>
+                    <option value="1°A">1°A</option>
+                    <option value="1°B">1°B</option>
+                    <option value="1°C">1°C</option>
+                    <option value="1°D">1°D</option>
+                    <option value="1°E">1°E</option>
+                </select>
+                <button class="btn-action" onclick="startApp()">INICIAR SESIÓN ACADÉMICA</button>
+            </div>
+        </div>
+
+        <!-- INDEX -->
+        <div id="screen-index" class="card hidden">
+            <h2 style="border:none; text-align:center; margin-bottom: 10px;">Currículo de Tecnología 1</h2>
+            <p style="text-align:center; color:#666; margin-bottom: 40px;">Cada módulo requiere una lectura profunda de sus bases teóricas y la aprobación del examen de 10 reactivos para certificar el progreso.</p>
+            <div id="menu-container" class="menu-grid"></div>
+        </div>
+
+        <!-- THEORY -->
+        <div id="screen-theory" class="card hidden">
+            <div id="theory-content"></div>
+            <div style="margin-top:50px; border-top: 2px solid #eee; padding-top:30px;">
+                <div style="background: #e7f3ff; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid #007bff;">
+                    <strong>Aviso de Evaluación:</strong> Al hacer clic en el botón inferior, comenzará el examen de 10 preguntas. Asegúrese de haber comprendido todos los conceptos técnicos expuestos arriba.
+                </div>
+                <button class="btn-action" onclick="showExam()">COMENZAR EVALUACIÓN DE 10 REACTIVOS</button>
+            </div>
+        </div>
+
+        <!-- EXAM -->
+        <div id="screen-exam" class="card hidden">
+            <h2 id="exam-title" style="margin-bottom: 30px;">Evaluación de Desempeño</h2>
+            <div id="quiz-container"></div>
+            <button class="btn-action" onclick="gradeExam()">CALIFICAR Y FINALIZAR MÓDULO</button>
+        </div>
+
+        <!-- RESULT -->
+        <div id="screen-result" class="card hidden" style="text-align:center;">
+            <div id="scoreDisplay" style="font-size:5rem; font-weight:900; line-height: 1;"></div>
+            <h3 id="resultMsg" style="font-size: 2rem;"></h3>
+            <p id="feedbackText" style="font-size: 1.2rem; margin: 20px 0;"></p>
+            
+            <div id="cert-area">
+                <canvas id="certificate-canvas" width="1000" height="750"></canvas>
+                <button id="btn-download" class="btn-action" style="background: var(--accent); margin-top:25px; display:none;" onclick="downloadCertificate()">DESCARGAR COMPROBANTE OFICIAL (PNG)</button>
+            </div>
+            
+            <button class="btn-action" style="margin-top:25px; background:#4b4b4b;" onclick="showIndex()">REGRESAR AL LISTADO DE TEMAS</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Plataforma Educativa Digital &copy; 2026<br>Escuela Secundaria Técnica 132 | Dirección de Educación Tecnológica</p>
+    </footer>
+
+    <script>
+        let user = { name: '', group: '', school: 'Secundaria Técnica 132' };
+        let currentModule = 0;
+
+        const modules = [
+            {
+                title: "1. La Técnica en la Vida Cotidiana: Fundamentos y Evolución",
+                theory: `
+                    <h1>1. La Técnica en la Vida Cotidiana</h1>
+                    <p>La técnica es la esencia transformadora de la humanidad. No se limita al uso de dispositivos electrónicos, sino que constituye el sistema de acciones intencionadas que permite al ser humano intervenir en la naturaleza para satisfacer necesidades. En este módulo extenso, analizaremos cómo la técnica estructura nuestra existencia desde los actos más simples hasta los procesos industriales complejos.</p>
+                    
+                    <h2>1.1 Concepto Ontológico de Técnica</h2>
+                    <p>Desde una perspectiva académica, la técnica se define como un conjunto de procedimientos, habilidades y recursos que se aplican para realizar una tarea u obtener un resultado específico. Requiere tres elementos fundamentales: <strong>el conocimiento</strong> (saber qué hacer), <strong>la habilidad</strong> (saber cómo hacerlo) y <strong>la intención</strong> (querer resolver un problema).</p>
+                    <p>En la vida cotidiana, la técnica se manifiesta en:</p>
+                    <ul>
+                        <li><strong>Técnicas de subsistencia:</strong> Cocción de alimentos, potabilización de agua, construcción de refugio.</li>
+                        <li><strong>Técnicas de comunicación:</strong> Lenguaje, escritura, señales, transmisión digital de datos.</li>
+                        <li><strong>Técnicas de organización:</strong> Gestión del tiempo, normas de convivencia, leyes sociales.</li>
+                    </ul>
+
+                    <div class="case-study">
+                        <h4>Estudio de Caso: La técnica del calzado</h4>
+                        <p>El calzado no es solo una prenda; es un producto técnico de alta ingeniería. Analiza su estructura: la suela debe proporcionar tracción y amortiguación (técnica de polímeros), el cuerpo debe permitir la transpiración (técnica textil) y el diseño debe adaptarse a la ergonomía del pie humano (biotecnia). Cada par de zapatos es la culminación de siglos de perfeccionamiento técnico.</p>
+                    </div>
+
+                    <h2>1.2 Las Necesidades Humanas y su Resolución Técnica</h2>
+                    <p>Abraham Maslow propuso que el ser humano tiene necesidades jerarquizadas. La tecnología responde a ellas de la siguiente manera:</p>
+                    <ol>
+                        <li><strong>Necesidades Básicas:</strong> Resueltas mediante técnicas agrícolas, sistemas de riego y arquitectura básica.</li>
+                        <li><strong>Seguridad:</strong> Satisfecha a través de sistemas de protección, medicina y prevención de desastres.</li>
+                        <li><strong>Autorrealización:</strong> Mediante técnicas de expresión artística, acceso a la información y educación digital.</li>
+                    </ol>
+
+                    <h2>1.3 El Impacto Socio-Ambiental</h2>
+                    <p>Toda intervención técnica genera un cambio en el entorno. La técnica de iluminación eléctrica, por ejemplo, permitió extender la jornada educativa y laboral, pero también introdujo el concepto de contaminación lumínica y el consumo masivo de energía. Por ello, el técnico moderno debe evaluar no solo la eficiencia, sino la sustentabilidad de sus acciones.</p>
+                    
+                    <div class="technical-info">
+                        <strong>Nota Técnica:</strong> La eficiencia técnica se mide por la relación entre los recursos utilizados (energía, tiempo, materia prima) y los resultados obtenidos. Un sistema es superior si logra el mismo fin con menor inversión de recursos.
+                    </div>
+
+                    <h2>1.4 La Técnica como Proceso Sistémico</h2>
+                    <p>Finalmente, debemos entender que la técnica no actúa sola. Forma parte de un <strong>Sistema Técnico</strong> compuesto por: seres humanos, máquinas/herramientas, materiales y el entorno. Si uno de estos componentes falla, el proceso técnico pierde su efectividad.</p>
+                `,
+                questions: [
+                    { q: "¿Cuál es la definición académica de técnica?", options: ["Un objeto que usa electricidad", "Conjunto de procedimientos y recursos para obtener un resultado", "Una ley de la naturaleza que no se puede cambiar", "El dinero necesario para comprar máquinas"], correct: 1 },
+                    { q: "¿Cuáles son los 3 elementos fundamentales de la técnica?", options: ["Dinero, suerte y tiempo", "Máquinas, cables y botones", "Conocimiento, habilidad e intención", "Fuerza, velocidad y resistencia"], correct: 2 },
+                    { q: "En el estudio de caso del calzado, ¿qué ciencia se encarga de adaptar el diseño a la forma del cuerpo?", options: ["Astronomía", "Ergonomía", "Geología", "Botánica"], correct: 1 },
+                    { q: "¿Qué tipo de necesidad se resuelve mediante la agricultura y el riego?", options: ["Necesidades de lujo", "Necesidades básicas de subsistencia", "Necesidades de transporte", "Necesidades de diversión"], correct: 1 },
+                    { q: "Un sistema técnico está compuesto por:", options: ["Solo máquinas", "Solo seres humanos", "Humanos, herramientas, materiales y entorno", "Dinero y computadoras"], correct: 2 },
+                    { q: "La eficiencia técnica busca:", options: ["Gastar más dinero", "Gastar más tiempo", "Lograr el fin con el mínimo de recursos", "Hacer los objetos más grandes"], correct: 2 },
+                    { q: "¿Cuál es un impacto negativo mencionado de la iluminación eléctrica?", options: ["Mejor estudio", "Mayor seguridad", "Contaminación lumínica", "Menor costo"], correct: 2 },
+                    { q: "Las técnicas de organización incluyen:", options: ["Cocinar", "Gestión del tiempo y normas", "Caminar", "Dormir"], correct: 1 },
+                    { q: "¿Qué significa 'teleología' en la técnica?", options: ["Uso de teléfonos", "Acciones con un fin o propósito", "Estudio de la televisión", "Reparación de radios"], correct: 1 },
+                    { q: "La técnica es un proceso social porque:", options: ["Se hace solo", "Se transmite y requiere consenso", "No importa la gente", "Es magia"], correct: 1 }
+                ]
+            }
+        ];
+
+        // Títulos de los temas restantes para completar 30
+        const tempTitles = [
+            "La Tecnología como Campo de Conocimiento",
+            "La Técnica como Práctica Social e Histórica",
+            "Las Acciones Técnicas en los Procesos Artesanales",
+            "Las Acciones Técnicas en los Procesos Industriales",
+            "Los Materiales y su Clasificación Técnica",
+            "Origen y Transformación de los Materiales",
+            "Uso y Procesamiento de Materiales Sintéticos",
+            "La Energía en los Procesos Técnicos",
+            "Fuentes y Tipos de Energía en la Tecnología",
+            "Transformación y Uso Eficiente de la Energía",
+            "Las Herramientas y Máquinas como Extensión Humana",
+            "Delegación de Funciones en Herramientas",
+            "Mantenimiento y Seguridad de Maquinaria",
+            "Comunicación y Representación Técnica",
+            "El Dibujo Técnico como Lenguaje Universal",
+            "Importancia de la Simbología en la Tecnología",
+            "Manuales y Diagramas de Flujo",
+            "Planeación y Organización Técnica",
+            "Gestión de Proyectos Tecnológicos",
+            "Normatividad y Seguridad en el Taller",
+            "Impacto Ambiental de los Procesos Técnicos",
+            "Prevención de Impactos en la Naturaleza",
+            "Sustentabilidad y Tecnologías Limpias",
+            "La Evaluación de los Sistemas Técnicos",
+            "Eficacia y Eficiencia en la Producción",
+            "Control de Calidad en Procesos",
+            "El Proyecto de Producción Artesanal",
+            "El Proyecto de Producción Industrial",
+            "Innovación Técnica y Desarrollo Social"
+        ];
+
+        // Rellenar dinámicamente los módulos
+        tempTitles.forEach((t, i) => {
+            modules.push({
+                title: `${i+2}. ${t}`,
+                theory: `
+                    <h1>${t}</h1>
+                    <p>Este módulo presenta un estudio exhaustivo sobre <strong>${t}</strong>. En el ámbito de la educación tecnológica de primer grado de secundaria, es vital comprender que la evolución de los procesos humanos está ligada a la optimización de los recursos disponibles. Esta lectura extensa profundiza en la relación entre el sujeto y el objeto técnico.</p>
+                    
+                    <h2>${i+2}.1 Marco Teórico Conceptual</h2>
+                    <p>La integración de conocimientos científicos y empíricos permite que la tecnología avance. No se trata simplemente de inventar cosas nuevas, sino de aplicar métodos sistemáticos para mejorar los procesos existentes. La eficiencia y la eficacia son los dos pilares que sostienen la innovación técnica moderna.</p>
+                    
+                    <div class="case-study">
+                        <h4>Análisis de Caso: Implementación de Sistemas</h4>
+                        <p>Cuando una empresa o un artesano decide cambiar su método de trabajo, realiza una intervención técnica. Este cambio debe ser planeado meticulosamente, considerando no solo el beneficio económico, sino también la ergonomía del trabajador y el ciclo de vida de los materiales utilizados.</p>
+                    </div>
+
+                    <h2>${i+2}.2 Estructura y Función</h2>
+                    <p>Cada componente de un sistema técnico tiene una función específica. La delegación de funciones humanas en herramientas y máquinas ha permitido que la humanidad realice tareas que antes eran imposibles por su complejidad o requerimiento físico. Este proceso de transformación de la energía y la materia es lo que define nuestra era industrial.</p>
+                    
+                    <div class="technical-info">
+                        <strong>Protocolo Técnico:</strong> Todo sistema debe contar con un manual de operación y un esquema de mantenimiento preventivo para evitar fallos catastróficos que pongan en riesgo la producción o la integridad de las personas.
+                    </div>
+
+                    <h2>${i+2}.3 Prospectiva Tecnológica</h2>
+                    <p>Hacia el futuro, el estudio de este tema nos lleva a considerar las tecnologías limpias y la economía circular. El técnico del siglo XXI no solo debe saber construir, sino también saber reciclar y reintegrar los componentes al ciclo natural o industrial.</p>
+                `,
+                questions: [
+                    { q: `¿Cuál es el objetivo principal del tema: ${t}?`, options: ["Mejorar los procesos técnicos mediante el conocimiento", "Gastar más recursos naturales", "Hacer los trabajos más difíciles", "Eliminar el uso de herramientas"], correct: 0 },
+                    { q: "¿Qué diferencia a la tecnología de la ciencia pura?", options: ["La tecnología es solo teórica", "La tecnología busca la aplicación práctica para resolver necesidades", "La tecnología no usa matemáticas", "Son exactamente lo mismo"], correct: 1 },
+                    { q: "¿A qué se refiere la 'eficacia' en un proceso técnico?", options: ["A lograr el objetivo deseado", "A gastar mucho tiempo", "A usar herramientas caras", "A trabajar sin planos"], correct: 0 },
+                    { q: "¿Cuál es la función de la delegación de funciones?", options: ["Hacer que el humano trabaje más", "Transferir acciones humanas a herramientas o máquinas", "Olvidar cómo se hacen las cosas", "Aumentar los riesgos"], correct: 1 },
+                    { q: "En el marco de la sustentabilidad, ¿qué se debe considerar?", options: ["Solo el precio del producto", "El impacto ambiental y ciclo de vida", "Que el objeto sea de un solo uso", "Usar la mayor cantidad de energía posible"], correct: 1 },
+                    { q: "¿Qué documento es vital para la seguridad en un sistema técnico?", options: ["Un poema", "El manual de operación y seguridad", "Una lista de precios", "Un recibo de luz"], correct: 1 },
+                    { q: "La ergonomía en el diseño técnico busca:", options: ["Que el objeto se vea bonito", "Adaptar el objeto a las capacidades del usuario", "Que el objeto sea muy pesado", "Que nadie pueda usarlo"], correct: 1 },
+                    { q: "¿Qué es un insumo en un proceso técnico?", options: ["El producto final", "La materia prima o energía que entra al sistema", "La basura", "El técnico que trabaja"], correct: 1 },
+                    { q: "La planeación técnica sirve para:", options: ["Improvisar sobre la marcha", "Organizar recursos y tiempos eficientemente", "Perder tiempo", "Gastar más materiales"], correct: 1 },
+                    { q: "Un técnico profesional debe priorizar:", options: ["La rapidez sobre la seguridad", "La calidad, seguridad y sustentabilidad", "El menor costo aunque sea peligroso", "No usar planos"], correct: 1 }
+                ]
+            });
+        });
+
+        function startApp() {
+            const name = document.getElementById('userName').value.trim();
+            const group = document.getElementById('userGroup').value;
+            if(!name || !group) return alert("Por favor, introduce tu nombre completo y selecciona tu grupo escolar.");
+            user.name = name;
+            user.group = group;
+            showIndex();
+        }
+
+        function showIndex() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('navbar').classList.remove('hidden');
+            document.getElementById('screen-index').classList.remove('hidden');
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+            modules.forEach((m, i) => {
+                const item = document.createElement('div');
+                item.className = 'menu-item';
+                item.onclick = () => loadModule(i);
+                item.innerHTML = `
+                    <div style="font-weight: bold; color: var(--primary); font-size: 1.1rem;">${m.title}</div>
+                    <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; background: #eee; padding: 3px 8px; border-radius: 4px;">EXTENSO: 2 PÁG.</span>
+                        <span style="color: var(--accent); font-weight: bold; font-size: 0.85rem;">LEER TEMA →</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            window.scrollTo(0,0);
+        }
+
+        function loadModule(i) {
+            currentModule = i;
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('theory-content').innerHTML = modules[i].theory;
+            document.getElementById('screen-theory').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function showExam() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            modules[currentModule].questions.forEach((q, i) => {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.innerHTML = `<p style="font-weight: bold; font-size: 1.1rem; color: #333;">${i+1}. ${q.q}</p>`;
+                q.options.forEach((opt, idx) => {
+                    div.innerHTML += `
+                        <input type="radio" name="q${i}" id="q${i}opt${idx}" value="${idx}">
+                        <label class="option-label" for="q${i}opt${idx}">${opt}</label>
+                    `;
+                });
+                container.appendChild(div);
+            });
+            document.getElementById('screen-exam').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function gradeExam() {
+            let score = 0;
+            const total = 10;
+            let answered = 0;
+            
+            for(let i=0; i<total; i++) {
+                const sel = document.querySelector(`input[name="q${i}"]:checked`);
+                if(sel) {
+                    answered++;
+                    if(parseInt(sel.value) === modules[currentModule].questions[i].correct) {
+                        score++;
+                    }
+                }
+            }
+            
+            if(answered < total) {
+                return alert(`Has respondido ${answered} de 10 preguntas. Debes completar todas para ser calificado.`);
+            }
+
+            const finalGrade = (score / total) * 10;
+            displayResult(finalGrade);
+        }
+
+        function displayResult(grade) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const display = document.getElementById('scoreDisplay');
+            const msg = document.getElementById('resultMsg');
+            const feedback = document.getElementById('feedbackText');
+            const btnDownload = document.getElementById('btn-download');
+            const canvas = document.getElementById('certificate-canvas');
+
+            display.innerText = grade.toFixed(1);
+            display.style.color = grade >= 6 ? "var(--accent)" : "var(--secondary)";
+            
+            if(grade >= 6) {
+                msg.innerText = "¡MÓDULO APROBADO!";
+                feedback.innerText = `Felicidades ${user.name.split(' ')[0]}, has superado la evaluación de este tema satisfactoriamente.`;
+                btnDownload.style.display = "block";
+                canvas.style.display = "block";
+                generateCertificate(grade);
+            } else {
+                msg.innerText = "MÓDULO NO APROBADO";
+                feedback.innerText = "La calificación mínima es 6.0. Revisa el contenido nuevamente para mejorar tu resultado.";
+                btnDownload.style.display = "none";
+                canvas.style.display = "none";
+            }
+            document.getElementById('screen-result').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function generateCertificate(grade) {
+            const canvas = document.getElementById('certificate-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Fondo Blanco
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, 1000, 750);
+            
+            // Marco Doble
+            ctx.strokeStyle = "#0a2342";
+            ctx.lineWidth = 20;
+            ctx.strokeRect(20, 20, 960, 710);
+            ctx.strokeStyle = "#800000";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(40, 40, 920, 670);
+
+            // Marca de agua
+            ctx.fillStyle = "rgba(10, 35, 66, 0.03)";
+            ctx.font = "bold 80px Arial";
+            ctx.textAlign = "center";
+            ctx.save();
+            ctx.translate(500, 375);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillText("EST 132 TECNOLOGÍA", 0, 0);
+            ctx.restore();
+
+            // Encabezado
+            ctx.fillStyle = "#0a2342";
+            ctx.textAlign = "center";
+            ctx.font = "bold 34px Times New Roman";
+            ctx.fillText("ESCUELA SECUNDARIA TÉCNICA 132", 500, 110);
+            
+            ctx.font = "24px Arial";
+            ctx.fillText("CONSTANCIA ACADÉMICA DE ACREDITACIÓN", 500, 160);
+            
+            ctx.beginPath();
+            ctx.moveTo(300, 180);
+            ctx.lineTo(700, 180);
+            ctx.stroke();
+
+            // Alumno
+            ctx.font = "italic 26px Georgia";
+            ctx.fillStyle = "#333";
+            ctx.fillText("Por medio de la presente se reconoce a:", 500, 250);
+            
+            ctx.font = "bold 45px Arial";
+            ctx.fillStyle = "#800000";
+            ctx.fillText(user.name.toUpperCase(), 500, 320);
+            
+            ctx.font = "24px Arial";
+            ctx.fillStyle = "#333";
+            ctx.fillText("Por haber cursado y aprobado satisfactoriamente el tema:", 500, 390);
+            
+            ctx.font = "bold 28px Arial";
+            ctx.fillStyle = "#0a2342";
+            ctx.fillText(`"${modules[currentModule].title}"`, 500, 440);
+            
+            ctx.font = "bold 22px Arial";
+            ctx.fillStyle = "#333";
+            ctx.fillText(`Grupo: ${user.group}`, 500, 490);
+            
+            // Calificación
+            ctx.font = "bold 40px Arial";
+            ctx.fillStyle = grade >= 8 ? "#1e5631" : "#000";
+            ctx.fillText(`CALIFICACIÓN: ${grade.toFixed(1)} / 10`, 500, 560);
+            
+            // Pie
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#7f8c8d";
+            const date = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+            ctx.fillText(`Expedido en Puerto Vallarta el ${date}`, 500, 620);
+            
+            ctx.font = "bold 14px Courier New";
+            const hash = Math.random().toString(36).substr(2, 10).toUpperCase();
+            ctx.fillText(`CÓDIGO DE VALIDACIÓN: EST132-SEC1-${hash}`, 500, 660);
+            
+            ctx.strokeStyle = "rgba(128, 0, 0, 0.5)";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(850, 600, 60, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.font = "bold 12px Arial";
+            ctx.fillText("SELLO", 850, 595);
+            ctx.fillText("TECNOLOGÍA", 850, 615);
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById('certificate-canvas');
+            const link = document.createElement('a');
+            const sanitizedName = user.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            link.download = `Certificado_Tec1_Tema${currentModule+1}_${sanitizedName}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+    </script>
+</body>
+</html>

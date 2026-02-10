@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Tecnología 2 - Secundaria Técnica 132</title>
+    <style>
+        :root {
+            --primary: #1a3a5f; /* Azul más profundo para 2do grado */
+            --secondary: #8b0000;
+            --accent: #2e7d32;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text: #212529;
+            --border: #dee2e6;
+        }
+        
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.8; }
+        
+        nav { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        .card { background: var(--card); padding: 50px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); margin-bottom: 30px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+        
+        .hidden { display: none; }
+        
+        h1 { color: var(--primary); text-align: center; font-size: 2.4rem; margin-bottom: 1.5rem; }
+        h2 { color: var(--secondary); border-left: 6px solid var(--secondary); padding-left: 15px; margin-top: 3rem; font-size: 1.8rem; }
+        h3 { color: var(--accent); margin-top: 2rem; font-size: 1.4rem; }
+        
+        p { margin-bottom: 1.5rem; text-align: justify; font-size: 1.05rem; }
+        
+        .btn-action { background: var(--primary); color: white; border: none; padding: 20px 30px; cursor: pointer; font-weight: bold; font-size: 1.1rem; border-radius: 8px; width: 100%; transition: all 0.3s ease; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-action:hover { background: #132a45; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; margin-top: 30px; }
+        .menu-item { background: white; border: 1px solid var(--border); padding: 25px; cursor: pointer; border-radius: 12px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; height: 180px; }
+        .menu-item:hover { border-color: var(--primary); background: #f0f4f8; transform: translateY(-5px); }
+        
+        .question-block { margin-bottom: 35px; padding: 30px; background: #fdfdfd; border-radius: 12px; border: 1px solid #eee; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
+        .option-label { display: block; padding: 18px; border: 2px solid #edeff2; margin-top: 12px; cursor: pointer; border-radius: 10px; transition: 0.2s; background: white; }
+        input[type="radio"]:checked + .option-label { background: #e8f0fe; border-color: var(--primary); font-weight: bold; color: var(--primary); }
+        input[type="radio"] { display: none; }
+
+        #certificate-canvas { max-width: 100%; height: auto; border: 8px double var(--primary); margin-top: 25px; display: none; background: white; }
+        
+        footer { text-align: center; padding: 80px 20px; color: #6c757d; font-size: 1rem; background: #eee; margin-top: 50px; }
+        
+        .theory-page { margin-bottom: 40px; padding: 20px; border: 1px solid #eee; border-radius: 10px; }
+        .case-study { background: #fffdf0; border-left: 5px solid #ffc107; padding: 30px; margin: 35px 0; border-radius: 4px; }
+        .technical-info { background: #f1f3f5; border: 1px solid #ced4da; padding: 25px; font-family: 'Consolas', monospace; font-size: 0.95rem; margin: 25px 0; border-radius: 6px; }
+        .badge { background: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        
+        ul, ol { margin-bottom: 20px; padding-left: 25px; }
+        li { margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="hidden">
+        <div style="font-weight: 900; letter-spacing: 1px;">TEC 132 | TECNOLOGÍA II (SEGUNDO GRADO)</div>
+        <button onclick="showIndex()" style="background:rgba(255,255,255,0.2); border: 2px solid white; color:white; padding:10px 25px; cursor:pointer; border-radius:6px; font-weight: bold; transition: 0.3s;">ÍNDICE DE TEMAS</button>
+    </nav>
+
+    <div class="container">
+        <!-- PANTALLA DE ACCESO -->
+        <div id="screen-login" class="card">
+            <div style="text-align: center;">
+                <div class="badge">EST 132 - SEGUNDO GRADO - 2025-2026</div>
+                <h1>Sistemas Tecnológicos y Sociedad</h1>
+                <p style="font-size: 1.3rem; color: #444; max-width: 800px; margin: 0 auto;">Plataforma de especialización técnica: Análisis de la ciencia y tecnología en el cambio social.</p>
+            </div>
+            <div style="margin-top: 50px; background: #f8f9fa; padding: 40px; border-radius: 15px; border: 1px solid #eee;">
+                <label style="font-weight: bold; color: var(--primary); font-size: 1.1rem;">Nombre del Alumno (Segundo Grado):</label>
+                <input type="text" id="userName" placeholder="Apellido Paterno Materno Nombres" style="width:100%; padding:20px; margin:15px 0 30px 0; border:2px solid #ddd; border-radius:8px; box-sizing: border-box; font-size: 1.2rem;">
+                
+                <label style="font-weight: bold; color: var(--primary); font-size: 1.1rem;">Grupo:</label>
+                <select id="userGroup" style="width:100%; padding:20px; margin:15px 0 40px 0; border:2px solid #ddd; border-radius:8px; font-size: 1.2rem; background: white;">
+                    <option value="" disabled selected>Selecciona tu sección...</option>
+                    <option value="2°A">2°A</option>
+                    <option value="2°B">2°B</option>
+                    <option value="2°C">2°C</option>
+                    <option value="2°D">2°D</option>
+                    <option value="2°E">2°E</option>
+                    <option value="2°F">2°F</option>
+                </select>
+                <button class="btn-action" onclick="startApp()">ACCEDER AL CURRÍCULO TÉCNICO</button>
+            </div>
+        </div>
+
+        <!-- ÍNDICE -->
+        <div id="screen-index" class="card hidden">
+            <h2 style="border:none; text-align:center; margin-bottom: 10px;">Temario de Tecnología II</h2>
+            <p style="text-align:center; color:#555; margin-bottom: 40px;">Usted se encuentra en el nivel de formación técnica superior. Cada módulo contiene teoría de dos páginas de extensión y evaluación de certificación.</p>
+            <div id="menu-container" class="menu-grid"></div>
+        </div>
+
+        <!-- TEORÍA -->
+        <div id="screen-theory" class="card hidden">
+            <div id="theory-content"></div>
+            <div style="margin-top:60px; border-top: 4px solid var(--primary); padding-top:40px;">
+                <div style="background: #fff4f4; padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 6px solid var(--secondary);">
+                    <strong style="font-size: 1.2rem;">REQUISITO DE EVALUACIÓN:</strong> Ha concluido la lectura de dos páginas teóricas. Para obtener el sello de validación, debe responder correctamente el examen de 10 reactivos.
+                </div>
+                <button class="btn-action" onclick="showExam()">ABRIR EVALUACIÓN DEL MÓDULO</button>
+            </div>
+        </div>
+
+        <!-- EXAMEN -->
+        <div id="screen-exam" class="card hidden">
+            <h2 id="exam-title" style="margin-bottom: 40px;">Protocolo de Evaluación</h2>
+            <div id="quiz-container"></div>
+            <button class="btn-action" onclick="gradeExam()">FINALIZAR Y CALIFICAR</button>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div id="screen-result" class="card hidden" style="text-align:center;">
+            <div id="scoreDisplay" style="font-size:6rem; font-weight:900; line-height: 1; margin-bottom: 20px;"></div>
+            <h3 id="resultMsg" style="font-size: 2.2rem; margin-bottom: 15px;"></h3>
+            <p id="feedbackText" style="font-size: 1.3rem; margin: 20px 0; color: #555;"></p>
+            
+            <div id="cert-area">
+                <canvas id="certificate-canvas" width="1000" height="750"></canvas>
+                <button id="btn-download" class="btn-action" style="background: var(--accent); margin-top:30px; display:none;" onclick="downloadCertificate()">DESCARGAR CERTIFICADO TÉCNICO (PNG)</button>
+            </div>
+            
+            <button class="btn-action" style="margin-top:35px; background:#333;" onclick="showIndex()">VOLVER AL ÍNDICE DE TEMAS</button>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Laboratorio de Tecnología Educativa - Segundo Grado</strong><br>Escuela Secundaria Técnica 132 | Puerto Vallarta, Jalisco.<br>Sistema de Gestión de Aprendizaje 2025</p>
+    </footer>
+
+    <script>
+        let user = { name: '', group: '', school: 'EST 132' };
+        let currentModule = 0;
+
+        // Generador de Temas de Segundo Grado
+        const titles2nd = [
+            "La relación entre la Tecnología y la Ciencia",
+            "Las ciencias naturales y sociales en el desarrollo tecnológico",
+            "El conocimiento tradicional y científico en la técnica",
+            "El cambio técnico y la delegación de funciones",
+            "Influencia de la sociedad en el desarrollo técnico",
+            "Las necesidades sociales y los cambios técnicos",
+            "La creación de productos en el cambio técnico",
+            "La sociedad tecnológica y su futuro",
+            "Implicaciones locales, regionales y globales de la técnica",
+            "El impacto ambiental de los sistemas técnicos",
+            "La técnica y el principio precautorio",
+            "La gestión técnica y el desarrollo sustentable",
+            "La planeación en los procesos técnicos",
+            "La organización y administración del proceso técnico",
+            "La ejecución y control de procesos técnicos",
+            "La normatividad y seguridad en los sistemas técnicos",
+            "La evaluación interna y externa de sistemas técnicos",
+            "Eficiencia y eficacia en los procesos productivos",
+            "La equidad en el acceso a la tecnología",
+            "El análisis costo-beneficio en la producción",
+            "La participación ciudadana en la evaluación técnica",
+            "La innovación técnica en el ciclo de vida de productos",
+            "Fuentes de innovación técnica: necesidades e intereses",
+            "La tecnología de la información y comunicación (TIC)",
+            "Uso de software especializado en el diseño técnico",
+            "Sistemas de producción: serie, lote y artesanal",
+            "Control de calidad y estandarización técnica",
+            "Diseño de proyectos de innovación técnica",
+            "Fases del proyecto técnico industrial",
+            "Impacto ético de la tecnología en la modernidad"
+        ];
+
+        const modules = titles2nd.map((t, i) => {
+            // Contenido teórico extenso simulando dos páginas
+            const page1 = `
+                <h2>PÁGINA 1: Fundamentos de ${t}</h2>
+                <p>En el segundo grado de educación secundaria, el estudio de <strong>${t}</strong> adquiere una dimensión crítica. A diferencia del primer año, donde nos enfocamos en el uso de herramientas, aquí analizamos cómo el conocimiento científico se entrelaza con la técnica para transformar la realidad social y productiva de manera sistémica.</p>
+                <p>La tecnología no es un ente aislado; es el resultado de un proceso histórico donde las necesidades sociales dictan el ritmo del avance científico. Por ejemplo, la revolución industrial no solo fue un cambio de máquinas, sino una reconfiguración total de la sociedad, pasando de lo rural a lo urbano. Este fenómeno se conoce como <em>determinismo tecnológico</em>, aunque actualmente preferimos el enfoque socio-técnico donde ambos elementos se influyen mutuamente.</p>
+                <div class="case-study">
+                    <h4>ANÁLISIS TEÓRICO: El Sistema Técnico</h4>
+                    <p>Un sistema técnico de segundo nivel implica la integración de subsistemas: materiales, energía, información y recursos humanos. Para que el tema "${t}" sea efectivo en la práctica, debe existir una planeación que considere la disponibilidad de insumos y el impacto ambiental a largo plazo.</p>
+                </div>
+                <p>La importancia del conocimiento científico radica en su capacidad de predicción. Mientras que la técnica tradicional se basa en el "ensayo y error", la tecnología moderna utiliza modelos matemáticos y principios de física y química para asegurar que los resultados sean óptimos antes de siquiera iniciar la producción física del objeto.</p>
+            `;
+
+            const page2 = `
+                <h2>PÁGINA 2: Aplicación y Prospectiva</h2>
+                <p>Continuando con el análisis profundo de <strong>${t}</strong>, debemos observar la delegación de funciones. En este grado escolar, aprendemos que la delegación no es solo usar una herramienta, sino transferir procesos cognitivos (inteligencia) a los sistemas, como ocurre con la automatización y los sensores inteligentes.</p>
+                <div class="technical-info">
+                    <strong>ESTÁNDAR TÉCNICO:</strong> La eficiencia en este tema se mide mediante la fórmula: η = (Trabajo Útil / Energía Total) * 100. En los procesos de segundo grado, buscamos siempre maximizar la sustentabilidad reduciendo la huella de carbono mediante el uso de energías limpias y procesos de reciclado integrados.
+                </div>
+                <p>Finalmente, la evaluación de este contenido requiere una visión ética. No basta con que un sistema funcione; debe ser socialmente equitativo. El acceso a la tecnología es un derecho que permite el desarrollo de las comunidades. Por ello, el estudio de "${t}" concluye que el técnico del futuro debe ser un gestor del cambio, capaz de prever riesgos y proponer soluciones creativas a los desafíos globales.</p>
+                <p><strong>Conclusión del Módulo:</strong> La comprensión total de este tema faculta al alumno para participar en proyectos de innovación técnica que no solo resuelven problemas inmediatos, sino que protegen el patrimonio natural para las generaciones venideras.</p>
+            `;
+
+            return {
+                title: `${i+1}. ${t}`,
+                theory: `<h1>${t}</h1>` + page1 + page2,
+                questions: [
+                    { q: `¿Cuál es el enfoque principal de este módulo sobre "${t}"?`, options: ["El uso básico de martillos", "La integración entre ciencia, técnica y sociedad", "Comprar objetos caros", "Ignorar el impacto ambiental"], correct: 1 },
+                    { q: "¿Qué diferencia a la tecnología de segundo grado de la de primer grado?", options: ["Usa colores más oscuros", "Se enfoca en el análisis sistémico y el cambio social", "Ya no usa herramientas", "Es solo para adultos"], correct: 1 },
+                    { q: "¿A qué se refiere el 'determinismo tecnológico' mencionado en la teoría?", options: ["A que la tecnología determina el cambio social", "A que los cables deben ser rojos", "A que la ciencia es aburrida", "A que no hay futuro"], correct: 0 },
+                    { q: "¿Qué elemento permite la predicción en la tecnología moderna?", options: ["La suerte", "El conocimiento científico y modelos matemáticos", "El dinero", "La televisión"], correct: 1 },
+                    { q: "¿Qué significa 'delegar funciones' en un sistema complejo?", options: ["Hacer que otro alumno trabaje", "Transferir acciones y procesos a herramientas o sistemas automáticos", "No hacer nada", "Romper las máquinas"], correct: 1 },
+                    { q: "En el análisis técnico, ¿cómo se mide la eficiencia?", options: ["Por el tamaño del objeto", "Por la relación entre trabajo útil y energía invertida", "Por lo bonito del diseño", "Por el tiempo que tarda en romperse"], correct: 1 },
+                    { q: "¿Qué es el enfoque socio-técnico?", options: ["La relación mutua entre sociedad y tecnología", "Un tipo de red social", "Reparar computadoras en grupo", "Bailar con robots"], correct: 0 },
+                    { q: "¿Cuál es una responsabilidad ética del técnico moderno?", options: ["Gastar todo el presupuesto", "Asegurar la equidad social y la sustentabilidad", "Hacer objetos de un solo uso", "No leer los manuales"], correct: 1 },
+                    { q: "¿Qué permite la automatización en los procesos industriales?", options: ["Perder el control", "Transferir procesos cognitivos a sensores y sistemas", "Gastar más energía", "Que el humano trabaje más físicamente"], correct: 1 },
+                    { q: "El objetivo final del estudio de este tema es:", options: ["Pasar el tiempo", "Capacitar para la innovación técnica responsable", "Saber los nombres de las herramientas", "Pintar el taller"], correct: 1 }
+                ]
+            };
+        });
+
+        function startApp() {
+            const name = document.getElementById('userName').value.trim();
+            const group = document.getElementById('userGroup').value;
+            if(!name || !group) return alert("Identificación requerida: Ingrese su nombre y grupo para el registro académico.");
+            user.name = name;
+            user.group = group;
+            showIndex();
+        }
+
+        function showIndex() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('navbar').classList.remove('hidden');
+            document.getElementById('screen-index').classList.remove('hidden');
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+            modules.forEach((m, i) => {
+                const item = document.createElement('div');
+                item.className = 'menu-item';
+                item.onclick = () => loadModule(i);
+                item.innerHTML = `
+                    <div style="font-weight: 800; color: var(--primary); font-size: 1.2rem; line-height: 1.3;">${m.title}</div>
+                    <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end;">
+                        <span style="font-size: 0.75rem; background: #eee; padding: 5px 10px; border-radius: 4px; font-weight: bold;">TEORÍA EXTENSA</span>
+                        <span style="color: var(--secondary); font-weight: bold; font-size: 0.9rem;">ESTUDIAR →</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            window.scrollTo(0,0);
+        }
+
+        function loadModule(i) {
+            currentModule = i;
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('theory-content').innerHTML = modules[i].theory;
+            document.getElementById('screen-theory').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function showExam() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            modules[currentModule].questions.forEach((q, i) => {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.innerHTML = `<p style="font-weight: bold; font-size: 1.2rem; color: #111; margin-bottom: 20px;">${i+1}. ${q.q}</p>`;
+                q.options.forEach((opt, idx) => {
+                    div.innerHTML += `
+                        <input type="radio" name="q${i}" id="q${i}opt${idx}" value="${idx}">
+                        <label class="option-label" for="q${i}opt${idx}">${opt}</label>
+                    `;
+                });
+                container.appendChild(div);
+            });
+            document.getElementById('screen-exam').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function gradeExam() {
+            let score = 0;
+            const total = 10;
+            let answered = 0;
+            
+            for(let i=0; i<total; i++) {
+                const sel = document.querySelector(`input[name="q${i}"]:checked`);
+                if(sel) {
+                    answered++;
+                    if(parseInt(sel.value) === modules[currentModule].questions[i].correct) score++;
+                }
+            }
+            
+            if(answered < total) return alert(`Evaluación incompleta: Ha respondido ${answered} de ${total}. Es obligatorio contestar todos los reactivos.`);
+
+            const finalGrade = (score / total) * 10;
+            displayResult(finalGrade);
+        }
+
+        function displayResult(grade) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const display = document.getElementById('scoreDisplay');
+            const msg = document.getElementById('resultMsg');
+            const feedback = document.getElementById('feedbackText');
+            const btnDownload = document.getElementById('btn-download');
+            const canvas = document.getElementById('certificate-canvas');
+
+            display.innerText = grade.toFixed(1);
+            display.style.color = grade >= 6 ? "var(--accent)" : "var(--secondary)";
+            
+            if(grade >= 6) {
+                msg.innerText = "CRÉDITO ACADÉMICO OBTENIDO";
+                feedback.innerText = `Excelente desempeño, ${user.name}. Has demostrado dominio sobre los sistemas tecnológicos de segundo grado.`;
+                btnDownload.style.display = "block";
+                canvas.style.display = "block";
+                generateCertificate(grade);
+            } else {
+                msg.innerText = "CRÉDITO NO ALCANZADO";
+                feedback.innerText = "La normativa escolar requiere un mínimo de 6.0 para acreditar. Te sugerimos releer las dos páginas de teoría.";
+                btnDownload.style.display = "none";
+                canvas.style.display = "none";
+            }
+            document.getElementById('screen-result').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function generateCertificate(grade) {
+            const canvas = document.getElementById('certificate-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, 1000, 750);
+            
+            // Bordes Elegantes
+            ctx.strokeStyle = "#1a3a5f";
+            ctx.lineWidth = 30;
+            ctx.strokeRect(15, 15, 970, 720);
+            ctx.strokeStyle = "#c5a059"; // Dorado para 2do grado
+            ctx.lineWidth = 5;
+            ctx.strokeRect(45, 45, 910, 660);
+
+            // Marca de agua central
+            ctx.fillStyle = "rgba(26, 58, 95, 0.04)";
+            ctx.font = "bold 90px serif";
+            ctx.textAlign = "center";
+            ctx.save();
+            ctx.translate(500, 375);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillText("TECNOLOGÍA II - EST 132", 0, 0);
+            ctx.restore();
+
+            // Texto Certificado
+            ctx.fillStyle = "#1a3a5f";
+            ctx.textAlign = "center";
+            ctx.font = "bold 38px Times New Roman";
+            ctx.fillText("ESCUELA SECUNDARIA TÉCNICA 132", 500, 120);
+            
+            ctx.font = "24px Arial";
+            ctx.fillStyle = "#555";
+            ctx.fillText("SISTEMA DE ACREDITACIÓN DE COMPETENCIAS TÉCNICAS", 500, 170);
+            
+            ctx.font = "italic 28px Georgia";
+            ctx.fillStyle = "#000";
+            ctx.fillText("Se otorga el presente reconocimiento a:", 500, 260);
+            
+            ctx.font = "bold 52px Arial";
+            ctx.fillStyle = "#8b0000";
+            ctx.fillText(user.name.toUpperCase(), 500, 340);
+            
+            ctx.font = "24px Arial";
+            ctx.fillStyle = "#333";
+            ctx.fillText("Por acreditar el módulo de especialidad de Segundo Grado:", 500, 410);
+            
+            ctx.font = "bold 30px Arial";
+            ctx.fillStyle = "#1a3a5f";
+            ctx.fillText(`"${modules[currentModule].title}"`, 500, 470);
+            
+            ctx.font = "bold 24px Arial";
+            ctx.fillText(`GRUPO: ${user.group} | CICLO ESCOLAR 2025-2026`, 500, 530);
+            
+            ctx.font = "bold 45px Arial";
+            ctx.fillStyle = "#2e7d32";
+            ctx.fillText(`VALOR ACADÉMICO: ${grade.toFixed(1)} / 10`, 500, 610);
+            
+            const date = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#888";
+            ctx.fillText(`Validado electrónicamente en Puerto Vallarta el ${date}`, 500, 670);
+            
+            const hash = Math.random().toString(36).substr(2, 12).toUpperCase();
+            ctx.font = "bold 14px monospace";
+            ctx.fillText(`ID-SISTEMA: EST132-L2-T${currentModule+1}-${hash}`, 500, 700);
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById('certificate-canvas');
+            const link = document.createElement('a');
+            const sanitizedName = user.name.replace(/\s/g, '_');
+            link.download = `Certificado_Tec2_Tema${currentModule+1}_${sanitizedName}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+    </script>
+</body>
+</html>

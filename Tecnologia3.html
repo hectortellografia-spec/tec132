@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Tecnología 3 - Secundaria Técnica 132</title>
+    <style>
+        :root {
+            --primary: #0a2342;
+            --secondary: #800000;
+            --accent: #1e5631;
+            --bg: #f4f4f2;
+            --card: #ffffff;
+            --text: #2c3e50;
+            --border: #d5d8dc;
+        }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; color: var(--text); line-height: 1.8; }
+        
+        nav { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        .card { background: var(--card); padding: 50px; border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.1); margin-bottom: 30px; position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+        
+        .hidden { display: none; }
+        
+        h1 { color: var(--primary); text-align: center; font-size: 2.4rem; margin-bottom: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; }
+        h2 { color: var(--secondary); border-left: 5px solid var(--secondary); padding-left: 15px; margin-top: 2.5rem; font-size: 1.8rem; }
+        h3 { color: var(--accent); margin-top: 1.5rem; font-size: 1.4rem; }
+        
+        p { margin-bottom: 1.5rem; text-align: justify; font-size: 1.1rem; }
+        
+        .btn-action { background: var(--primary); color: white; border: none; padding: 18px 30px; cursor: pointer; font-weight: bold; font-size: 1.1rem; border-radius: 6px; width: 100%; transition: 0.3s; margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-action:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; margin-top: 30px; }
+        .menu-item { background: white; border: 1px solid var(--border); padding: 25px; cursor: pointer; border-radius: 10px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; height: 160px; }
+        .menu-item:hover { border-color: var(--primary); transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .question-block { margin-bottom: 40px; padding: 25px; background: #fafafa; border-radius: 10px; border: 1px solid #eee; }
+        .option-label { display: block; padding: 15px; border: 2px solid #eee; margin-top: 10px; cursor: pointer; border-radius: 8px; transition: 0.2s; background: white; }
+        input[type="radio"]:checked + .option-label { background: #eef2ff; border-color: var(--primary); font-weight: bold; color: var(--primary); }
+        input[type="radio"] { display: none; }
+
+        #certificate-canvas { max-width: 100%; height: auto; border: 4px double #333; margin-top: 25px; display: none; background: white; }
+        
+        footer { text-align: center; padding: 60px; color: #7f8c8d; font-size: 0.95rem; }
+        
+        .case-study { background: #fff9f0; border: 1px solid #ffeeba; padding: 25px; margin: 30px 0; border-radius: 8px; }
+        .case-study h4 { margin-top: 0; color: #856404; text-transform: uppercase; font-size: 0.95rem; margin-bottom: 10px; font-weight: 800; }
+        
+        .technical-info { background: #e9ecef; padding: 25px; border-radius: 5px; font-family: 'Segoe UI', sans-serif; border-left: 5px solid var(--primary); margin: 25px 0; }
+
+        .badge { background: #0a2342; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        
+        .theory-page-break { border-top: 2px dashed #ccc; margin: 40px 0; position: relative; text-align: center; }
+        .theory-page-break::after { content: "PÁGINA 2 DE TEORÍA"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: white; padding: 0 15px; font-size: 0.8rem; color: #999; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="hidden">
+        <div style="font-weight: bold; letter-spacing: 1px;">TEC 132 | TECNOLOGÍA III (INNOVACIÓN)</div>
+        <button onclick="showIndex()" style="background:rgba(255,255,255,0.2); border: 1px solid white; color:white; padding:8px 20px; cursor:pointer; border-radius:4px; font-weight: bold;">ÍNDICE DE TEMAS</button>
+    </nav>
+
+    <div class="container">
+        <!-- LOGIN -->
+        <div id="screen-login" class="card">
+            <div style="text-align: center;">
+                <div class="badge">EST 132 - CICLO ESCOLAR 2025-2026</div>
+                <h1>Tecnología III: Innovación y Diseño</h1>
+                <p style="font-size: 1.2rem; color: #555;">Plataforma de Aprendizaje Avanzado en Sistemas Tecnológicos</p>
+            </div>
+            <div style="margin-top: 40px; background: #f8f9fa; padding: 30px; border-radius: 12px;">
+                <label style="font-weight: bold; color: var(--primary);">Nombre del Estudiante:</label>
+                <input type="text" id="userName" placeholder="Apellido Paterno, Materno y Nombres" style="width:100%; padding:15px; margin:10px 0 25px 0; border:2px solid #ddd; border-radius:6px; box-sizing: border-box; font-size: 1.1rem;">
+                
+                <label style="font-weight: bold; color: var(--primary);">Grupo:</label>
+                <select id="userGroup" style="width:100%; padding:15px; margin:10px 0 35px 0; border:2px solid #ddd; border-radius:6px; font-size: 1.1rem; background: white;">
+                    <option value="" disabled selected>Selecciona tu grupo...</option>
+                    <option value="3°A">3°A</option>
+                    <option value="3°B">3°B</option>
+                    <option value="3°C">3°C</option>
+                    <option value="3°D">3°D</option>
+                    <option value="3°E">3°E</option>
+                </select>
+                <button class="btn-action" onclick="startApp()">ACCEDER AL CURRÍCULO</button>
+            </div>
+        </div>
+
+        <!-- INDEX -->
+        <div id="screen-index" class="card hidden">
+            <h2 style="border:none; text-align:center; margin-bottom: 10px;">Temario de Tecnología III</h2>
+            <p style="text-align:center; color:#666; margin-bottom: 40px;">Explora los 30 módulos de innovación técnica. Cada uno contiene teoría extensa y evaluación final.</p>
+            <div id="menu-container" class="menu-grid"></div>
+        </div>
+
+        <!-- THEORY -->
+        <div id="screen-theory" class="card hidden">
+            <div id="theory-content"></div>
+            <div style="margin-top:50px; border-top: 2px solid #eee; padding-top:30px;">
+                <div style="background: #fff4f4; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid var(--secondary);">
+                    <strong>Validación de Lectura:</strong> Has finalizado las 2 páginas de teoría técnica. Para acreditar este módulo, debes responder correctamente al menos 6 de las 10 preguntas del examen.
+                </div>
+                <button class="btn-action" onclick="showExam()">ABRIR EXAMEN DE CERTIFICACIÓN</button>
+            </div>
+        </div>
+
+        <!-- EXAM -->
+        <div id="screen-exam" class="card hidden">
+            <h2 id="exam-title" style="margin-bottom: 30px;">Evaluación de Módulo</h2>
+            <div id="quiz-container"></div>
+            <button class="btn-action" onclick="gradeExam()">ENVIAR RESPUESTAS Y CALIFICAR</button>
+        </div>
+
+        <!-- RESULT -->
+        <div id="screen-result" class="card hidden" style="text-align:center;">
+            <div id="scoreDisplay" style="font-size:6rem; font-weight:900; line-height: 1;"></div>
+            <h3 id="resultMsg" style="font-size: 2.2rem;"></h3>
+            <p id="feedbackText" style="font-size: 1.2rem; margin: 20px 0;"></p>
+            
+            <div id="cert-area">
+                <canvas id="certificate-canvas" width="1000" height="750"></canvas>
+                <button id="btn-download" class="btn-action" style="background: var(--accent); margin-top:25px; display:none;" onclick="downloadCertificate()">GUARDAR CERTIFICADO EN DISPOSITIVO</button>
+            </div>
+            
+            <button class="btn-action" style="margin-top:25px; background:#4b4b4b;" onclick="showIndex()">VOLVER AL TEMARIO</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Sistema Institucional de Evaluación Tecnológica &copy; 2026<br>Escuela Secundaria Técnica 132 | Academia de Tecnología</p>
+    </footer>
+
+    <script>
+        const user = { name: '', group: '', level: 'Tercer Grado' };
+        let currentModule = 0;
+
+        // Definición de los 30 temas de 3er Grado
+        const topics = [
+            "Innovación Técnica y Desarrollo Sustentable",
+            "La Innovación como Proceso de Mejora Continua",
+            "Sistemas Técnicos: Estructura y Evolución",
+            "Fuentes de Innovación Técnica",
+            "TICs y la Innovación en los Procesos",
+            "El Ciclo de Vida de los Productos Técnicos",
+            "Desarrollo Sustentable en la Producción",
+            "Impacto Ambiental de los Sistemas Tecnológicos",
+            "Normas Ambientales y Calidad Industrial",
+            "Tecnologías Limpias y Energías Renovables",
+            "Innovación en la Gestión de Materiales",
+            "Procesos Industriales y Producción en Serie",
+            "Prospectiva Tecnológica: El Futuro de la Técnica",
+            "Sistemas de Control y Automatización",
+            "La Informática en el Control de Procesos",
+            "Diseño Técnico y Representación Gráfica Avanzada",
+            "Simulación de Sistemas Técnicos",
+            "Resolución de Problemas Técnicos Complejos",
+            "Gestión de Proyectos de Innovación",
+            "Evaluación Interna de los Sistemas Técnicos",
+            "Evaluación Externa y Social de la Tecnología",
+            "Ética en el Desarrollo Tecnológico",
+            "Propiedad Intelectual y Patentes",
+            "Transferencia de Tecnología en la Sociedad",
+            "La Calidad en los Procesos de Producción",
+            "Monitoreo y Control de Calidad",
+            "Seguridad e Higiene en Sistemas Industriales",
+            "Diseño de Productos Sustentables",
+            "Planificación de la Producción Industrial",
+            "El Proyecto de Innovación Técnica Final"
+        ];
+
+        const modules = topics.map((t, i) => {
+            return {
+                title: `${i + 1}. ${t}`,
+                theory: `
+                    <h1>${t}</h1>
+                    <p>La asignatura de Tecnología en tercer grado se centra en la <strong>innovación</strong> y el <strong>desarrollo sustentable</strong>. En este tema, exploramos cómo la necesidad social impulsa el cambio técnico y cómo este debe equilibrarse con la preservación del medio ambiente para las generaciones futuras.</p>
+                    
+                    <h2>${i+1}.1 Fundamentos del Cambio Técnico</h2>
+                    <p>El cambio técnico no ocurre de forma aislada; es una respuesta compleja a demandas económicas, sociales y ambientales. La innovación implica no solo crear algo nuevo, sino mejorar lo existente para aumentar la eficiencia, reducir costos o minimizar el impacto ecológico. En la industria moderna, esto se traduce en la implementación de sistemas inteligentes que optimizan el uso de materia prima y energía.</p>
+                    
+                    <div class="technical-info">
+                        <strong>Definición Técnica:</strong> La innovación es el proceso mediante el cual se integran conocimientos técnicos y científicos para generar productos, procesos o servicios que satisfacen una necesidad específica con un valor agregado superior al anterior.
+                    </div>
+
+                    <div class="case-study">
+                        <h4>Estudio de Caso: Evolución del Sistema</h4>
+                        <p>Consideremos la transición de la producción artesanal a la industrial automatizada. Mientras que el artesano controla cada etapa del proceso, la innovación industrial permite que sensores y actuadores realicen mediciones de precisión milimétrica, garantizando que el 100% de los productos cumplan con los estándares de calidad establecidos.</p>
+                    </div>
+
+                    <div class="theory-page-break"></div>
+
+                    <h2>${i+1}.2 Sustentabilidad y Futuro</h2>
+                    <p>Uno de los pilares de este módulo es la comprensión del <strong>Desarrollo Sustentable</strong>. No es suficiente que una innovación sea rentable; debe ser socialmente equitativa y ambientalmente responsable. Esto implica analizar el ciclo de vida del producto: desde la extracción de la materia prima hasta su disposición final o reciclaje (Cuna a Cuna).</p>
+                    
+                    <p>La prospectiva tecnológica nos permite visualizar cómo las herramientas de hoy moldearán el mundo del mañana. En tercer grado, el alumno debe ser capaz de proyectar soluciones técnicas que no agoten los recursos naturales, utilizando materiales biodegradables o sistemas de energía de baja emisión de carbono.</p>
+                    
+                    <h3>Contextualización en la Industria 4.0</h3>
+                    <p>La integración de la informática con la mecánica ha dado paso a lo que conocemos como la cuarta revolución industrial. Aquí, la innovación técnica se basa en datos. El análisis de grandes volúmenes de información permite predecir fallas antes de que ocurran, lo que representa el nivel más alto de eficiencia técnica alcanzado hasta la fecha por la humanidad.</p>
+                `,
+                questions: [
+                    { q: `¿Cuál es el enfoque principal del tema: ${t}?`, options: ["La repetición de procesos antiguos", "La innovación y el desarrollo sustentable", "Solo el dibujo técnico", "Ignorar el medio ambiente"], correct: 1 },
+                    { q: "¿Qué define a la innovación técnica de tercer grado?", options: ["Usar herramientas rotas", "Mejorar procesos basándose en necesidades y sustentabilidad", "Hacer todo a mano siempre", "No usar tecnología"], correct: 1 },
+                    { q: "¿Qué significa el concepto 'Cuna a Cuna'?", options: ["Que el producto se tira a la basura", "Que los materiales se reintegran al ciclo productivo o natural", "Que solo sirve para bebés", "Que el proceso es muy lento"], correct: 1 },
+                    { q: "La prospectiva tecnológica se encarga de:", options: ["Estudiar el pasado solamente", "Visualizar y planear escenarios futuros de la técnica", "Dibujar máquinas viejas", "Vender productos baratos"], correct: 1 },
+                    { q: "¿Cuál es una característica de la Industria 4.0?", options: ["Uso exclusivo de carbón", "Integración de datos e inteligencia en procesos", "Eliminación de todas las máquinas", "Uso de papel para todo"], correct: 1 },
+                    { q: "¿Qué es la eficiencia técnica?", options: ["Gastar mucho para ganar poco", "Lograr el objetivo con el uso óptimo de recursos", "Trabajar sin descanso", "Hacer productos pesados"], correct: 1 },
+                    { q: "Un sistema sustentable debe ser:", options: ["Solo caro", "Socialmente equitativo y ambientalmente responsable", "Solo para empresas grandes", "Muy ruidoso"], correct: 1 },
+                    { q: "¿Qué papel juega la evaluación externa en la tecnología?", options: ["No sirve para nada", "Analiza el impacto social y ambiental en la comunidad", "Solo revisa el color del producto", "Cuenta el dinero ganado"], correct: 1 },
+                    { q: "¿Qué es un actuador en un sistema automatizado?", options: ["La persona que mira la máquina", "El componente que ejecuta una acción física", "El cable de luz", "Un manual de usuario"], correct: 1 },
+                    { q: "La innovación técnica busca principalmente:", options: ["Hacer las cosas más difíciles", "Añadir valor y satisfacer necesidades de mejor forma", "Gastar más energía", "Copiar modelos antiguos sin cambios"], correct: 1 }
+                ]
+            };
+        });
+
+        function startApp() {
+            const name = document.getElementById('userName').value.trim();
+            const group = document.getElementById('userGroup').value;
+            if(!name || !group) return alert("Por favor, ingresa tu nombre y selecciona tu grupo escolar.");
+            user.name = name;
+            user.group = group;
+            showIndex();
+        }
+
+        function showIndex() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('navbar').classList.remove('hidden');
+            document.getElementById('screen-index').classList.remove('hidden');
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+            modules.forEach((m, i) => {
+                const item = document.createElement('div');
+                item.className = 'menu-item';
+                item.onclick = () => loadModule(i);
+                item.innerHTML = `
+                    <div style="font-weight: bold; color: var(--primary); font-size: 1rem; line-height:1.3;">${m.title}</div>
+                    <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.75rem; background: #f0f0f0; padding: 4px 10px; border-radius: 4px; color: #555;">TEORÍA: 2 PÁGS</span>
+                        <span style="color: var(--secondary); font-weight: bold; font-size: 0.8rem;">ESTUDIAR →</span>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            window.scrollTo(0,0);
+        }
+
+        function loadModule(i) {
+            currentModule = i;
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('theory-content').innerHTML = modules[i].theory;
+            document.getElementById('screen-theory').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function showExam() {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            modules[currentModule].questions.forEach((q, i) => {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.innerHTML = `<p style="font-weight: bold; font-size: 1.1rem;">${i+1}. ${q.q}</p>`;
+                q.options.forEach((opt, idx) => {
+                    div.innerHTML += `
+                        <input type="radio" name="q${i}" id="q${i}opt${idx}" value="${idx}">
+                        <label class="option-label" for="q${i}opt${idx}">${opt}</label>
+                    `;
+                });
+                container.appendChild(div);
+            });
+            document.getElementById('screen-exam').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function gradeExam() {
+            let score = 0;
+            const total = 10;
+            let answered = 0;
+            
+            for(let i=0; i<total; i++) {
+                const sel = document.querySelector(`input[name="q${i}"]:checked`);
+                if(sel) {
+                    answered++;
+                    if(parseInt(sel.value) === modules[currentModule].questions[i].correct) score++;
+                }
+            }
+            
+            if(answered < total) return alert("Debes responder todas las preguntas para obtener tu calificación.");
+            displayResult((score / total) * 10);
+        }
+
+        function displayResult(grade) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const display = document.getElementById('scoreDisplay');
+            const msg = document.getElementById('resultMsg');
+            const feedback = document.getElementById('feedbackText');
+            const btnDownload = document.getElementById('btn-download');
+            const canvas = document.getElementById('certificate-canvas');
+
+            display.innerText = grade.toFixed(1);
+            display.style.color = grade >= 6 ? "var(--accent)" : "var(--secondary)";
+            
+            if(grade >= 6) {
+                msg.innerText = "¡ACREDITACIÓN EXITOSA!";
+                feedback.innerText = `${user.name}, has demostrado competencia técnica en este módulo de tercer grado.`;
+                btnDownload.style.display = "block";
+                canvas.style.display = "block";
+                generateCertificate(grade);
+            } else {
+                msg.innerText = "NO ACREDITADO";
+                feedback.innerText = "Se requiere una calificación mínima de 6.0. Te recomendamos leer la teoría de innovación nuevamente.";
+                btnDownload.style.display = "none";
+                canvas.style.display = "none";
+            }
+            document.getElementById('screen-result').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function generateCertificate(grade) {
+            const canvas = document.getElementById('certificate-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, 1000, 750);
+            
+            // Bordes institucionales
+            ctx.strokeStyle = "#0a2342";
+            ctx.lineWidth = 25;
+            ctx.strokeRect(20, 20, 960, 710);
+            ctx.strokeStyle = "#800000";
+            ctx.lineWidth = 5;
+            ctx.strokeRect(45, 45, 910, 660);
+
+            // Marca de agua
+            ctx.fillStyle = "rgba(10, 35, 66, 0.04)";
+            ctx.font = "bold 90px Arial";
+            ctx.textAlign = "center";
+            ctx.save();
+            ctx.translate(500, 375);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillText("TECNOLOGÍA III - INNOVACIÓN", 0, 0);
+            ctx.restore();
+
+            // Texto Certificado
+            ctx.fillStyle = "#0a2342";
+            ctx.textAlign = "center";
+            ctx.font = "bold 32px 'Times New Roman'";
+            ctx.fillText("ESCUELA SECUNDARIA TÉCNICA 132", 500, 110);
+            
+            ctx.font = "26px Arial";
+            ctx.fillText("CONSTANCIA DE LOGRO TECNOLÓGICO", 500, 160);
+            
+            ctx.font = "italic 24px Georgia";
+            ctx.fillStyle = "#444";
+            ctx.fillText("Se otorga el presente reconocimiento a:", 500, 240);
+            
+            ctx.font = "bold 42px Arial";
+            ctx.fillStyle = "#800000";
+            ctx.fillText(user.name.toUpperCase(), 500, 310);
+            
+            ctx.font = "22px Arial";
+            ctx.fillStyle = "#333";
+            ctx.fillText("Por su destacada participación y aprobación del módulo:", 500, 380);
+            
+            ctx.font = "bold 26px Arial";
+            ctx.fillStyle = "#0a2342";
+            ctx.fillText(`"${modules[currentModule].title}"`, 500, 430);
+            
+            ctx.font = "bold 20px Arial";
+            ctx.fillText(`Grupo: ${user.group} | Nivel: Secundaria Técnica`, 500, 480);
+            
+            ctx.font = "bold 38px Arial";
+            ctx.fillStyle = grade >= 9 ? "#1e5631" : "#0a2342";
+            ctx.fillText(`CALIFICACIÓN: ${grade.toFixed(1)} / 10.0`, 500, 560);
+            
+            const date = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#7f8c8d";
+            ctx.fillText(`Validado electrónicamente el día ${date}`, 500, 630);
+            
+            const hash = Math.random().toString(36).substr(2, 12).toUpperCase();
+            ctx.font = "bold 13px 'Courier New'";
+            ctx.fillText(`FOLIO DE VALIDACIÓN: TEC3-INNOV-${hash}`, 500, 670);
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById('certificate-canvas');
+            const link = document.createElement('a');
+            const nameShort = user.name.substring(0,10).replace(/\s/g, '_');
+            link.download = `Certificado_Tec3_M${currentModule+1}_${nameShort}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+    </script>
+</body>
+</html>
